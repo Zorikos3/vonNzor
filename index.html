@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="Favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Base cursor style */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Exo 2', sans-serif;
+      color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(135deg, #000428, #004e92);
+      position: relative;
+      cursor: url('cursor.cr') 2 2, auto;
+    }
+
+    #reveal-button {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      color: #00ffdd;
+      font-size: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      cursor: pointer;
+      transition: opacity 1s ease;
+    }
+
+    .hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-container {
+      text-align: center;
+      z-index: 2;
+      backdrop-filter: blur(15px);
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+      opacity: 0;
+      transition: opacity 1.5s ease;
+      animation: fadeIn 2s forwards 1s;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    #background-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: auto;
+      min-height: 100%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.6;
+    }
+
+    .intro-text h1 {
+      font-size: 56px;
+      margin-bottom: 20px;
+      color: #00ffdd;
+      text-shadow: 0 0 20px rgba(0, 255, 221, 0.7);
+      animation: glowText 3s infinite alternate, floatText 5s ease-in-out infinite, flicker 0.1s linear infinite;
+    }
+
+    @keyframes floatText {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .intro-text p {
+      font-size: 20px;
+      color: #ccc;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+      margin-bottom: 30px;
+      animation: flicker 0.1s linear infinite;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #00ffdd, #007bff);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 30px;
+      margin: 10px;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      font-size: 18px;
+      box-shadow: 0 0 15px rgba(0, 255, 221, 0.5);
+      border: none;
+      outline: none;
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      cursor: url('cursor.ani'), pointer; /* Custom animated cursor for buttons */
+    }
+
+    .cta-button:hover {
+      background: linear-gradient(135deg, #007bff, #00ffdd);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 0 25px rgba(0, 255, 221, 0.7);
+    }
+
+    #about-container {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 15px;
+      animation: fadeInText 1.5s ease-in forwards;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    @keyframes fadeInText {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+  <title>vonNzor geekin..</title>
+</head>
+<body>
+  <!-- Full-screen button -->
+  <div id="reveal-button">Click Anywhere..</div>
+
+  <!-- Background video -->
+  <video id="background-video" autoplay muted loop>
+    <source src="von1.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Background music -->
+  <audio id="background-music" loop>
+    <source src="von1.mp4" type="audio/mp4" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="intro-container">
+    <div class="intro-text">
+      <h1>Von&nbsp;N&nbsp;Zor</h1>
+      <p id="changingText"></p>
+      <!-- Updated link to download "EcoGuard.zip" -->
+      <a href="EcoGuard.zip" class="cta-button"><i class="fab fa-discord"></i>EcoGuard AI</a>
+      <button id="about-button" class="cta-button">About Zor</button>
+      <div id="about-container">
+        <p id="about-text">stacked out c++ enjoyer, knows python, full-on lua. cpp we skidding lmao! contact me on discord "zorikos3".</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const revealButton = document.getElementById("reveal-button");
+    const introContainer = document.querySelector(".intro-container");
+    const backgroundVideo = document.getElementById("background-video");
+    const backgroundMusic = document.getElementById("background-music");
+
+    revealButton.addEventListener("click", function () {
+      revealButton.classList.add("hidden");
+      introContainer.style.opacity = 1;
+      backgroundVideo.style.opacity = 1;
+      backgroundVideo.play();
+      backgroundMusic.play();
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const introText = document.querySelector(".intro-text");
+      introText.style.opacity = 1;
+      typeWriterEffect(introText.querySelector("h1"), 100);
+      typeWriterEffect(introText.querySelector("p"), 50);
+    });
+
+    function typeWriterEffect(element, speed) {
+      const text = element.innerText;
+      element.innerText = "";
+      let i = 0;
+      const typeInterval = setInterval(function () {
+        if (i < text.length) {
+          element.innerText += text.charAt(i);
+          i++;
+        } else {
+          clearInterval(typeInterval);
+        }
+      }, speed);
+    }
+
+    const changingText = document.getElementById("changingText");
+    const texts = [
+      "Zorky knows your location",
+      "owner of liquid 02 aka solarware!",
+      "Made by zor...",
+      "vonNzor",
+      "Roblox Offsets?!",
+      "contact me",
+      "Byfron gay as shit",
+      "I love my customers❤",
+      "Thanks for visiting!"
+    ];
+    let currentIndex = 0;
+    let letterIndex = 0;
+    let isTyping = true;
+
+    function typeText() {
+      if (isTyping) {
+        if (letterIndex < texts[currentIndex].length) {
+          changingText.innerHTML += texts[currentIndex].charAt(letterIndex);
+          letterIndex++;
+          setTimeout(typeText, 100);
+        } else {
+          isTyping = false;
+          setTimeout(eraseText, 2000);
+        }
+      }
+    }
+
+    function eraseText() {
+      if (!isTyping) {
+        if (letterIndex >= 0) {
+          changingText.innerHTML = texts[currentIndex].substring(0, letterIndex);
+          letterIndex--;
+          setTimeout(eraseText, 50);
+        } else {
+          currentIndex = (currentIndex + 1) % texts.length;
+          isTyping = true;
+          setTimeout(typeText, 500);
+        }
+      }
+    }
+
+    typeText();
+
+    const aboutButton = document.getElementById("about-button");
+    const aboutContainer = document.getElementById("about-container");
+    const aboutText = document.getElementById("about-text");
+
+    aboutButton.addEventListener("click", function () {
+      if (aboutContainer.style.display === "none" || !aboutContainer.style.display) {
+        aboutContainer.style.display = "block";
+        aboutText.style.opacity = 0;
+        setTimeout(function () {
+          aboutText.style.opacity = 1;
+        }, 100);
+      } else {
+        aboutContainer.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
